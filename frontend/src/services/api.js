@@ -4,9 +4,6 @@ const API_URL = 'http://localhost:8000/api';
 
 const api = axios.create({
   baseURL: API_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
 });
 
 // Invoice API calls
@@ -27,11 +24,7 @@ export const createInvoice = (data) => {
     }
   });
 
-  return api.post('/invoices/', formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
-  });
+  return api.post('/invoices/', formData);
 };
 
 export const updateInvoice = (id, data) => {
@@ -43,11 +36,7 @@ export const updateInvoice = (id, data) => {
     }
   });
 
-  return api.put(`/invoices/${id}/`, formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
-  });
+  return api.put(`/invoices/${id}/`, formData);
 };
 
 export const deleteInvoice = (id) => {

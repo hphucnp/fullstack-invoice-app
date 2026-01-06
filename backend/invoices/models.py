@@ -2,11 +2,13 @@ from django.db import models
 
 # Create your models here.
 
+
 class InvoiceStatus(models.TextChoices):
-    DRAFT = 'DRAFT'
-    SENT = 'SENT'
-    PAID = 'PAID'
-    OVERDUE = 'OVERDUE'
+    DRAFT = "DRAFT"
+    SENT = "SENT"
+    PAID = "PAID"
+    OVERDUE = "OVERDUE"
+
 
 class Invoice(models.Model):
     invoice_number = models.CharField(max_length=20, unique=True)
@@ -15,6 +17,6 @@ class Invoice(models.Model):
     status = models.CharField(max_length=20, choices=InvoiceStatus.choices)
     issue_date = models.DateField()
     due_date = models.DateField()
-    file = models.FileField(upload_to='invoices/')
+    file = models.FileField(upload_to="invoices/", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
